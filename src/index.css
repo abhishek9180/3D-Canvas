@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.logo>canvas {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/space-texture.jpg');
+  background-size: 500px;
+}
