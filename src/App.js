@@ -35,8 +35,20 @@ const Main = () => (
 );
 
 class App extends React.Component{
+  state = {
+    loading: true
+  };
+
+  componentDidMount() {
+    this.setState({ loading: false }); // simulates an async action, and hides the spinner
+  }
   render() {
     const { classes } = this.props;
+    const { loading } = this.state;
+    
+    if(loading) { // if your component doesn't have to wait for an async action, remove this block 
+      return null; // render null when app is not ready
+    }
     return (
       <React.Fragment>
         <MuiThemeProvider theme={theme}>

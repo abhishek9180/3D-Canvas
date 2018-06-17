@@ -41,6 +41,11 @@ class ExampleList extends React.Component {
         id: 2,
         url: "/examples/animate-cube1",
         title: "Animate Cube1"
+      },
+      {
+        id: 3,
+        url: "/examples/animate-universe",
+        title: "Animate Universe"
       }
     ];
   

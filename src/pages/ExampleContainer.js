@@ -94,7 +94,7 @@ class ExampleContainer extends React.Component {
         <div className="j112">
           <div className="j113">
             <a href="/">
-              <h2 className="j68 j74 j87">UIDeve</h2>
+              <h2 className="j68 j74 j87">CanvasMagic</h2>
             </a>
           </div>
         </div>
@@ -116,7 +116,7 @@ class ExampleContainer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              { this.state.activeItem ? this.state.activeItem : 'UIDeve' }
+              { this.state.activeItem ? this.state.activeItem : 'CanvasMagic' }
             </Typography>
           </Toolbar>
         </AppBar>

@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ArrowForward from '@material-ui/icons/ArrowForward';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom'
 
 import AppLogo from '../AppLogo';
 import MenuAppBar from '../MenuAppBar';
@@ -29,13 +28,8 @@ class Home extends React.Component{
             <Typography variant="title" className="typography-header" gutterBottom>
               Explore our examples and experience the real power of Canvas. 
             </Typography>
-
-            <Button variant="raised" color="primary" href="/examples/animate-cube" className={classes.button}>
-              Try Now
-              <ArrowForward className={classes.icon} />
-            </Button>
-            
-            
+            <h3><Link className="try-now" to="/examples/animate-cube">Try out more</Link></h3>
+           
           </div>
           
         </div>

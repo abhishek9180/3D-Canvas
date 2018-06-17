@@ -18,103 +18,87 @@ class AppLogo extends Component {
         this.animate = this.animate.bind(this)
         this.boundResize = this.handleResize.bind(this);
         this.initLights = this.initLights.bind(this);
-        this.loadRockTexture = this.loadRockTexture.bind(this);
-        this.createRocks = this.createRocks.bind(this);
-        //this.Rock = this.Rock.bind(this);
-        this.updateCamPosition = this.updateCamPosition.bind(this);
-        this.scene, this.camera, this.renderer, this.angle = 0, this.material, this.rocks;
+        this.loadTexture = this.loadTexture.bind(this);
+        this.createScene = this.createScene.bind(this);
+        this.onDocumentMouseMove = this.onDocumentMouseMove.bind(this);
     }
 
     componentDidMount() {
 
         window.addEventListener('resize', debounce(this.boundResize, 16));
+        document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
 
-        const width = this.mount.clientWidth;
-        const height = this.mount.clientHeight;
+        this.windowHalfX = window.innerWidth / 2;
+        this.windowHalfY = window.innerHeight / 2;
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.targetX = 0;
+        this.targetY = 0;
+
+        this.camera = new THREE.PerspectiveCamera(27, window.innerWidth / window.innerHeight, 1, 10000);
+        this.camera.position.z = 1200;
 
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1000);;
-        this.renderer = new THREE.WebGLRenderer({ alpha: true });
-        //this.renderer.setClearColor('#222');
-        this.renderer.setSize(width, height);
-
+        this.scene.background = new THREE.Color(0x060708);
 
         this.initLights();
-        this.loadRockTexture();
+        this.loadTexture();
 
+        this.renderer = new THREE.WebGLRenderer();
+        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.mount.appendChild(this.renderer.domElement);
+        this.renderer.shadowMap.enabled = true;
+        //
+        this.renderer.gammaInput = true;
+        this.renderer.gammaOutput = true;
 
-        this.mount.appendChild(this.renderer.domElement)
         this.start();
     }
 
-    loadRockTexture() {
-        var textureLoader = new THREE.TextureLoader();
-        textureLoader.crossOrigin = true;
-        let self = this;
-        textureLoader.load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/rock-texture.jpg', function (texture) {
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(2, 2);
-            self.material = new THREE.MeshLambertMaterial({ map: texture });
-            self.createRocks();
+    loadTexture() {
+        let mapHeight = new THREE.TextureLoader().load("./models/json/leeperrysmith/Infinite-Level_02_Disp_NoSmoothUV-4096.jpg");
+        let material = new THREE.MeshPhongMaterial({
+            color: 0x552811,
+            specular: 0x222222,
+            shininess: 25,
+            bumpMap: mapHeight,
+            bumpScale: 12
         });
+        var loader = new THREE.JSONLoader();
+        let self = this;
+        loader.load("./models/json/leeperrysmith/LeePerrySmith.json", 
+            function (geometry) { self.createScene(geometry, 100, material) },
+            // onError callback
+            function( err ) {
+                console.log( 'An error happened: ' + JSON.stringify(err) );
+            }
+        );
     }
 
     initLights() {
-        var light = new THREE.PointLight(0xFFFFFF);
-        light.position.set(300, 300, 0);
-        this.scene.add(light);
-
-        light = new THREE.PointLight(0xFFFFFF);
-        light.position.set(0, 300, 300);
-        this.scene.add(light);
+        this.scene.add(new THREE.HemisphereLight(0x443333, 0x111122));
+        let spotLight = new THREE.SpotLight(0xffffbb, 2);
+        spotLight.position.set(0.5, 0, 1);
+        spotLight.position.multiplyScalar(700);
+        this.scene.add(spotLight);
+        spotLight.castShadow = true;
+        spotLight.shadow.mapSize.width = 2048;
+        spotLight.shadow.mapSize.height = 2048;
+        spotLight.shadow.camera.near = 200;
+        spotLight.shadow.camera.far = 1500;
+        spotLight.shadow.camera.fov = 40;
+        spotLight.shadow.bias = -0.005;
     }
 
-    createRocks() {
-        this.rocks = [];
-        for (var i = 0; i < 100; i++) {
-            var r = this.Rock();
-            this.rocks.push(r);
-        }
-    }
 
-    Rock() {
-        var size = 10 + Math.random() * 10;
-        var geometry = new THREE.IcosahedronGeometry(size, 0);
-        var icosahedron = new THREE.Mesh(geometry, this.material);
-
-        for (var i = 0, l = geometry.vertices.length; i < l; i++) {
-            geometry.vertices[i].x += size * -0.25 + Math.random() * size * 0.5;
-            geometry.vertices[i].y += size * -0.25 + Math.random() * size * 0.5;
-        }
-
-        // rotate cube
-        var variance = 0.01;
-        this.vr = {
-            x: -variance + Math.random() * variance * 2,
-            y: -variance + Math.random() * variance * 2
-        }
-        var field = 300;
-        this.scene.add(icosahedron);
-        icosahedron.position.x = -field + Math.random() * field * 2;
-        icosahedron.position.y = -field + Math.random() * field * 2;
-        icosahedron.position.z = -field + Math.random() * field * 2;
-
-        this.mesh = icosahedron;
-    }
-
-    /* rotate() {
-        this.mesh.rotation.x += this.vr.x;
-        this.mesh.rotation.y += this.vr.y;
-    } */
-
-    updateCamPosition() {
-        this.angle += 0.005;
-        var z = 100 * Math.cos(this.angle);
-        var y = 100 * Math.sin(this.angle);
-
-        this.camera.position.z = z;
-        this.camera.position.y = y;
-        this.camera.rotation.x = z * 0.02;
+    createScene(geometry, scale, material) {
+        this.mesh = new THREE.Mesh(geometry, material);
+        this.mesh.position.y = - 50;
+        this.mesh.scale.set(scale, scale, scale);
+        this.mesh.castShadow = true;
+        this.mesh.receiveShadow = true;
+        this.scene.add(this.mesh);
     }
 
 
@@ -134,25 +118,27 @@ class AppLogo extends Component {
         cancelAnimationFrame(this.frameId)
     }
 
+    onDocumentMouseMove(event) {
+        this.mouseX = (event.clientX - this.windowHalfX);
+        this.mouseY = (event.clientY - this.windowHalfY);
+    }
+
     animate() {
-
+        this.targetX = this.mouseX * .001;
+        this.targetY = this.mouseY * .001;
+        if (this.mesh) {
+            this.mesh.rotation.y += 0.05 * (this.targetX - this.mesh.rotation.y);
+            this.mesh.rotation.x += 0.05 * (this.targetY - this.mesh.rotation.x);
+        }
         this.renderer.render(this.scene, this.camera);
-        /* for (var i = 0; i < 100; i++) {
-            //this.rocks[i].rotate();
-        } */
-
-        this.updateCamPosition();
         this.frameId = window.requestAnimationFrame(this.animate)
     }
 
 
     handleResize() {
-        const width = this.mount.clientWidth;
-        const height = this.mount.clientHeight;
-        //this.camera.aspect = width / height;
-        //this.camera.updateProjectionMatrix();
-
-        this.renderer.setSize(width, height);
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
     }
 
     render() {

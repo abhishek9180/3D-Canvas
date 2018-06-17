@@ -53,7 +53,7 @@ class MenuAppBar extends React.Component {
         <AppBar position="fixed" className={scrollClass}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.flex}>
-              UIDeve
+            CanvasMagic
             </Typography>
           </Toolbar>
         </AppBar>
