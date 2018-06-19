@@ -26,7 +26,6 @@ class ExampleList extends React.Component {
   handleClick(i, e) {
     //e.preventDefault();
     this.setState({ activeItem: i });
-    console.log("item: " + JSON.stringify(i));
     this.props.onChange(i.title);
   }
   render() {
@@ -34,25 +33,30 @@ class ExampleList extends React.Component {
     const linkArray = [
       {
         id: 1,
-        url: "/examples/animate-cube",
-        title: "Animate Cube"
+        url: "/examples/polygon-animation-geometry",
+        title: "Polygon Animation (Geometry)"
       },
       {
         id: 2,
-        url: "/examples/animate-cube1",
-        title: "Animate Cube1"
+        url: "/examples/polygon-animation1-geometry",
+        title: "Polygon Animation1 (Geometry)"
       },
       {
         id: 3,
-        url: "/examples/animate-universe",
-        title: "Animate Universe"
+        url: "/examples/universe-animation-lights",
+        title: "Universe Animation (Lights)"
+      },
+      {
+        id: 4,
+        url: "/examples/text-animation-geometry",
+        title: "Text Animation (Geometry)"
       }
     ];
   
     return (
       <div className={classes.root}>
         <List component="nav">
-          {linkArray.map(i => (
+          {linkArray.reverse().map(i => (
             <div key={`list-${i.id}`}>
               <ListItem button>
                 <Link to={`${i.url}`} onClick={this.handleClick.bind(this, i)}>

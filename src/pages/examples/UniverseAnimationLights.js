@@ -9,7 +9,7 @@ const debounce = (func, wait) => {
     }
 }
 
-class AnimateUniverse extends Component {
+class UniverseAnimationLights extends Component {
     constructor(props) {
         super(props)
 
@@ -165,4 +165,4 @@ class AnimateUniverse extends Component {
     }
 }
 
-export default AnimateUniverse
+export default UniverseAnimationLights

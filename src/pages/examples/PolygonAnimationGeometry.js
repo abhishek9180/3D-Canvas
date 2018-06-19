@@ -9,7 +9,7 @@ const debounce = (func, wait) => {
     }
   }
 
-class AnimateCube extends React.Component {
+class PolygonAnimationGeometry extends React.Component {
   constructor(props) {
     super(props)
 
@@ -136,4 +136,4 @@ class AnimateCube extends React.Component {
   }
 }
 
-export default AnimateCube
+export default PolygonAnimationGeometry

@@ -10,6 +10,7 @@ import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
+import { Link } from 'react-router-dom'
 
 import ExampleList from './ExampleList';
 import Main from './ExampleRoutes';
@@ -68,7 +69,7 @@ class ExampleContainer extends React.Component {
     super(props)
     this.state = {
       mobileOpen: false,
-      activeItem: 'Animate Cube'
+      activeItem: 'Text Animation (Geometry)'
     };
     // This binding is necessary to make `this` work in the callback
     this.handleChange = this.handleChange.bind(this);
@@ -93,13 +94,13 @@ class ExampleContainer extends React.Component {
       <div>
         <div className="j112">
           <div className="j113">
-            <a href="/">
+            <Link to="/">
               <h2 className="j68 j74 j87">CanvasMagic</h2>
-            </a>
+            </Link>
           </div>
         </div>
         
-        <ExampleList  onChange={this.handleChange.bind(this)}/>
+        <ExampleList onChange={this.handleChange.bind(this)}/>
       </div>
     );
     

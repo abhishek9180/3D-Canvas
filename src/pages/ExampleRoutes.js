@@ -1,8 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import AnimateCube from "./examples/AnimateCube";
-import AnimateCube1 from "./examples/AnimateCube1";
-import AnimateUniverse from "./examples/AnimateUniverse";
+import PolygonAnimationGeometry from "./examples/PolygonAnimationGeometry";
+import PolygonAnimationGeometry1 from "./examples/PolygonAnimationGeometry1";
+import UniverseAnimationLights from "./examples/UniverseAnimationLights";
+import TextAnimationLights from "./examples/TextAnimationLights";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -12,9 +13,10 @@ import AnimateUniverse from "./examples/AnimateUniverse";
 const Main = () => (
   <main>
     <Switch>
-      <Route path="/examples/animate-cube" component={AnimateCube} />
-      <Route path="/examples/animate-cube1" component={AnimateCube1} />
-      <Route path="/examples/animate-universe" component={AnimateUniverse} />
+      <Route path="/examples/polygon-animation-geometry" component={PolygonAnimationGeometry} />
+      <Route path="/examples/polygon-animation1-geometry" component={PolygonAnimationGeometry1} />
+      <Route path="/examples/universe-animation-lights" component={UniverseAnimationLights} />
+      <Route path="/examples/text-animation-geometry" component={TextAnimationLights} />
     </Switch>
   </main>
 );

@@ -28,7 +28,7 @@ class Home extends React.Component{
             <Typography variant="title" className="typography-header" gutterBottom>
               Explore our examples and experience the real power of Canvas. 
             </Typography>
-            <h3><Link className="try-now" to="/examples/animate-cube">Try out more</Link></h3>
+            <h3><Link className="try-now" to="/examples/text-animation-geometry">Try out more</Link></h3>
            
           </div>
           
