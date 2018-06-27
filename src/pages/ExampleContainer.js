@@ -8,8 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import purple from '@material-ui/core/colors/purple';
 import { Link } from 'react-router-dom'
 
 import ExampleList from './ExampleList';
@@ -69,7 +67,7 @@ class ExampleContainer extends React.Component {
     super(props)
     this.state = {
       mobileOpen: false,
-      activeItem: 'Text Animation (Geometry)'
+      activeItem: 'Render To Texture'
     };
     // This binding is necessary to make `this` work in the callback
     this.handleChange = this.handleChange.bind(this);
@@ -151,7 +149,9 @@ class ExampleContainer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
             <Main> 
-              <CircularProgress className={classes.progress} style={{ color: purple[500] }} thickness={7} />
+            <div class="percentage">
+              <div class="lds-hourglass"></div>
+            </div>
             </Main>
         </main>
       </div>

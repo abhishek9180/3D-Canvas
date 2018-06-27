@@ -78,7 +78,7 @@ class PolygonAnimationGeometry1 extends React.Component {
   componentWillUnmount() {
     this.stop();
     this.mount.removeChild(this.renderer.domElement);
-    window.removeEventListener('scroll', debounce(this.boundResize, 16));
+    window.removeEventListener('resize', debounce(this.boundResize, 16));
   }
 
   start() {

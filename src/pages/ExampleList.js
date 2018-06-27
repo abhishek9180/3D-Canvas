@@ -50,6 +50,11 @@ class ExampleList extends React.Component {
         id: 4,
         url: "/examples/text-animation-geometry",
         title: "Text Animation (Geometry)"
+      },
+      {
+        id: 5,
+        url: "/examples/render-to-texture",
+        title: "Render to Texture"
       }
     ];
   

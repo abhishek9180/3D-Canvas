@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { Switch, Route } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -54,7 +53,9 @@ class App extends React.Component{
         <MuiThemeProvider theme={theme}>
       <CssBaseline />
         <Main className={classes.root}>
-          <CircularProgress className={classes.progress} color="primary"  size={50} thickness={5} />
+        <div class="percentage">
+          <div class="lds-hourglass"></div>
+        </div>
         </Main>
       </MuiThemeProvider>
     </React.Fragment>

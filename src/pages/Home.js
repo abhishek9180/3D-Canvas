@@ -19,7 +19,6 @@ const styles = theme => ({
 
 class Home extends React.Component{
   render() {
-    const { classes } = this.props;
     return (
         <div>
           <MenuAppBar />
@@ -28,7 +27,7 @@ class Home extends React.Component{
             <Typography variant="title" className="typography-header" gutterBottom>
               Explore our examples and experience the real power of Canvas. 
             </Typography>
-            <h3><Link className="try-now" to="/examples/text-animation-geometry">Try out more</Link></h3>
+            <h3><Link className="try-now" to="/examples/render-to-texture">Try out more</Link></h3>
            
           </div>
           

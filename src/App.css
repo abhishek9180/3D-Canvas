@@ -42,7 +42,7 @@ body {
   max-width: 600px;
   margin: 0 auto;
   position: relative;
-  bottom: 65px;
+  bottom: 100px;
   transform: translateY(-65%);
   box-shadow: 2px 2px 5px rgba(134, 134, 134, 0.9);
   border-radius: 3px;
