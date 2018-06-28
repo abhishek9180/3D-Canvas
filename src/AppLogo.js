@@ -143,9 +143,7 @@ class AppLogo extends Component {
 
     render() {
         return (
-            <div
-                style={{ width: '100%', height: '100vh', }} className="logo"
-                ref={(mount) => { this.mount = mount }}
+            <div ref={(mount) => { this.mount = mount }}
             />
         )
     }

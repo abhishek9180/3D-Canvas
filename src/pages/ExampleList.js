@@ -55,6 +55,11 @@ class ExampleList extends React.Component {
         id: 5,
         url: "/examples/render-to-texture",
         title: "Render to Texture"
+      },
+      {
+        id: 6,
+        url: "/examples/camera-array",
+        title: "Camera Array"
       }
     ];
   

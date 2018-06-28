@@ -97,8 +97,8 @@ class TextAnimationLights extends Component {
 				
 		// EVENTS
 		document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
-		document.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
-		document.addEventListener( 'touchmove', this.onDocumentTouchMove, false );
+		document.addEventListener( 'touchstart', this.onDocumentTouchStart, {passive: false} );
+		document.addEventListener( 'touchmove', this.onDocumentTouchMove, {passive: false} );
 		document.addEventListener( 'keypress', this.onDocumentKeyPress, false );
         document.addEventListener( 'keydown', this.onDocumentKeyDown, false );
         window.addEventListener('resize', debounce(this.boundResize, 16));
@@ -204,7 +204,6 @@ class TextAnimationLights extends Component {
     }
     
     onDocumentMouseDown( event ) {
-        console.log("1");
         event.preventDefault();
         document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
         document.addEventListener( 'mouseup', this.onDocumentMouseUp, false );

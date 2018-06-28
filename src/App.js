@@ -53,9 +53,7 @@ class App extends React.Component{
         <MuiThemeProvider theme={theme}>
       <CssBaseline />
         <Main className={classes.root}>
-        <div class="percentage">
-          <div class="lds-hourglass"></div>
-        </div>
+          <div className="lds-hourglass"></div>
         </Main>
       </MuiThemeProvider>
     </React.Fragment>

@@ -67,7 +67,7 @@ class ExampleContainer extends React.Component {
     super(props)
     this.state = {
       mobileOpen: false,
-      activeItem: 'Render To Texture'
+      activeItem: 'Camera Array'
     };
     // This binding is necessary to make `this` work in the callback
     this.handleChange = this.handleChange.bind(this);
@@ -149,9 +149,7 @@ class ExampleContainer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
             <Main> 
-            <div class="percentage">
-              <div class="lds-hourglass"></div>
-            </div>
+              <div className="lds-hourglass"></div>
             </Main>
         </main>
       </div>
