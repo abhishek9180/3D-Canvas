@@ -26,16 +26,16 @@ class MenuAppBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = { scrollClass: 'initialHeader' };
-    this.boundScroll = this.handleScroll.bind(this);   
+    this.boundScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener("scroll", debounce(this.boundScroll, 16));
   }
-  
+
   handleScroll() {
     //  add logic for checks here.
-    if(window.pageYOffset > (window.innerHeight-100)){
+    if (window.pageYOffset > (this.mount.clientHeight - 100)) {
       this.setState({ scrollClass: 'undefined' })
     } else {
       this.setState({ scrollClass: 'initialHeader' })
@@ -46,14 +46,24 @@ class MenuAppBar extends React.Component {
     let { classes } = this.props;
     let { scrollClass } = this.state;
 
-    
+
     return (
       <div className={classes.root}>
-        
+
         <AppBar position="fixed" className={scrollClass}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.flex}>
-            CanvasMagic
+              <h1 class="logo">
+
+                <span class="cuboid">
+                  <span class="cuboid-face cuboid-face-front"></span>
+                  <span class="cuboid-face cuboid-face-back"></span>
+
+                  <span class="cuboid-face cuboid-face-left"></span>
+                </span>
+
+                <span class="logo-text">anvasmagic</span>
+              </h1>
             </Typography>
           </Toolbar>
         </AppBar>

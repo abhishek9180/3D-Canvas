@@ -8,9 +8,7 @@ class RenderToTexture extends React.Component {
         this.onDocumentMouseMove = this.onDocumentMouseMove.bind(this);
         this.animate = this.animate.bind(this);
         this.mouseX = 0;
-        this.mouseY = 0; 
-        this.windowHalfX = window.innerWidth / 2; 
-        this.windowHalfY = window.innerHeight / 2; 
+        this.mouseY = 0;
         this.delta = 0.01;
     }
 
@@ -44,11 +42,17 @@ class RenderToTexture extends React.Component {
     }
 
     init() {
-        this.camera = new THREE.PerspectiveCamera(33, window.innerWidth/window.innerHeight, 1, 10000);
+
+        const width = this.mount.clientWidth;
+        const height = this.mount.clientHeight;
+        
+        this.windowHalfX = width / 2; 
+        this.windowHalfY = height / 2; 
+        this.camera = new THREE.PerspectiveCamera(33, width/height, 1, 10000);
         this.camera.position.z = 100;
         
 
-        this.cameraRTT = new THREE.OrthographicCamera(window.innerWidth/-2, window.innerWidth/2, window.innerHeight/2, window.innerHeight/-2, -10000, 10000);
+        this.cameraRTT = new THREE.OrthographicCamera(width/-2, width/2, height/2, height/-2, -10000, 10000);
         this.cameraRTT.position.z = 100;
 
         this.scene = new THREE.Scene();
@@ -63,7 +67,7 @@ class RenderToTexture extends React.Component {
         light.position.set(0, 0, -1).normalize();
         this.sceneRTT.add(light);
 
-        this.rtTexture = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, {minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBFormat});
+        this.rtTexture = new THREE.WebGLRenderTarget(width, height, {minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBFormat});
          
         this.material = new THREE.ShaderMaterial({
             uniforms: {time: {value: 0.0}},
@@ -78,7 +82,7 @@ class RenderToTexture extends React.Component {
             depthWrite: false
         });
 
-        let plane = new THREE.PlaneBufferGeometry(window.innerWidth, window.innerHeight);
+        let plane = new THREE.PlaneBufferGeometry(width, height);
 
         let quad = new THREE.Mesh(plane, this.material);
         quad.position.z = -100;
@@ -118,7 +122,7 @@ class RenderToTexture extends React.Component {
         }
 
         this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(width, height);
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.autoClear = false;
         this.mount.appendChild(this.renderer.domElement);

@@ -4,7 +4,7 @@ import * as THREE from 'three'
 class CameraArray extends React.Component {
     constructor(props) {
         super(props);
-        this.onWindowResize = this.onWindowResize.bind(this);
+        this.onWindowResize = this.handleResize.bind(this);
         this.animate = this.animate.bind(this);
     }
 
@@ -18,7 +18,7 @@ class CameraArray extends React.Component {
 
         let AMOUNT = 6;
         let SIZE = 1 / AMOUNT;
-        let ASPECT_RATIO = window.innerWidth / window.innerHeight;
+        let ASPECT_RATIO = this.mount.clientWidth / this.mount.clientHeight;
 
         let cameras = [];
         for(let y=0; y<AMOUNT; y++) {
@@ -64,15 +64,15 @@ class CameraArray extends React.Component {
 
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(this.mount.clientWidth, this.mount.clientHeight);
         this.renderer.shadowMap.enabled = true;
         this.mount.appendChild(this.renderer.domElement);
     }
 
-    onWindowResize() {
-        this.camera.aspect = window.innerWidth/window.innerHeight;
+    handleResize() {
+        this.camera.aspect = this.mount.clientWidth/this.mount.clientHeight;
         this.camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(this.mount.clientWidth, this.mount.clientHeight);
     }
 
     componentWillUnmount() {
@@ -99,7 +99,7 @@ class CameraArray extends React.Component {
 
     render() {
         return (
-            <div ref={(mount) => {this.mount = mount}}/>
+            <div className="canvas-container" ref={(mount) => {this.mount = mount}}/>
         )
     }
 }

@@ -3,6 +3,7 @@ import * as THREE from 'three'
 
 const debounce = (func, wait) => {
     let timeout
+    console.log("debounce");
     return (...args) => {
         clearTimeout(timeout)
         timeout = setTimeout(() => func.apply(this, args), wait)
@@ -28,14 +29,14 @@ class AppLogo extends Component {
         window.addEventListener('resize', debounce(this.boundResize, 16));
         document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
 
-        this.windowHalfX = window.innerWidth / 2;
-        this.windowHalfY = window.innerHeight / 2;
+        this.windowHalfX = this.mount.clientWidth / 2;
+        this.windowHalfY = this.mount.clientHeight / 2;
         this.mouseX = 0;
         this.mouseY = 0;
         this.targetX = 0;
         this.targetY = 0;
 
-        this.camera = new THREE.PerspectiveCamera(27, window.innerWidth / window.innerHeight, 1, 10000);
+        this.camera = new THREE.PerspectiveCamera(27, this.mount.clientWidth / this.mount.clientHeight, 1, 10000);
         this.camera.position.z = 1200;
 
         this.scene = new THREE.Scene();
@@ -46,7 +47,7 @@ class AppLogo extends Component {
 
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(this.mount.clientWidth, this.mount.clientHeight);
         this.mount.appendChild(this.renderer.domElement);
         this.renderer.shadowMap.enabled = true;
         //
@@ -105,7 +106,8 @@ class AppLogo extends Component {
     componentWillUnmount() {
         this.stop();
         this.mount.removeChild(this.renderer.domElement);
-        window.removeEventListener('scroll', debounce(this.boundResize, 16));
+        window.removeEventListener('resize', debounce(this.boundResize, 16));
+        document.removeEventListener( 'mousemove', this.onDocumentMouseMove );
     }
 
     start() {
@@ -136,15 +138,14 @@ class AppLogo extends Component {
 
 
     handleResize() {
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.renderer.setSize(this.mount.clientWidth, this.mount.clientHeight);
+        this.camera.aspect = this.mount.clientWidth / this.mount.clientHeight;
         this.camera.updateProjectionMatrix();
     }
 
     render() {
         return (
-            <div ref={(mount) => { this.mount = mount }}
-            />
+            <div className="canvas-container" ref={(mount) => { this.mount = mount }}/>
         )
     }
 }

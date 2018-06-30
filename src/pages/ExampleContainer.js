@@ -29,7 +29,7 @@ const styles = theme => ({
     position: 'absolute',
     marginLeft: drawerWidth,
     backgroundColor: 'transparent',
-    boxShadow: 'unset',
+    boxShadow: 'none',
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
@@ -72,7 +72,7 @@ class ExampleContainer extends React.Component {
     // This binding is necessary to make `this` work in the callback
     this.handleChange = this.handleChange.bind(this);
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
-    
+
   }
 
   handleDrawerToggle() {
@@ -81,8 +81,8 @@ class ExampleContainer extends React.Component {
 
   handleChange(i, e) {
     this.handleDrawerToggle();
-    this.setState({activeItem: i});
-    
+    this.setState({ activeItem: i });
+
   }
 
   render() {
@@ -93,15 +93,22 @@ class ExampleContainer extends React.Component {
         <div className="j112">
           <div className="j113">
             <Link to="/">
-              <h2 className="j68 j74 j87">CanvasMagic</h2>
+              <h1 class="logo">
+                <span class="cuboid">
+                  <span class="cuboid-face cuboid-face-front"></span>
+                  <span class="cuboid-face cuboid-face-back"></span>
+                  <span class="cuboid-face cuboid-face-left"></span>
+                </span>
+                <span class="logo-text">anvasmagic</span>
+              </h1>
             </Link>
           </div>
         </div>
-        
-        <ExampleList onChange={this.handleChange.bind(this)}/>
+
+        <ExampleList onChange={this.handleChange.bind(this)} />
       </div>
     );
-    
+
     return (
       <div className={classes.root}>
         <AppBar className={classes.appBar}>
@@ -115,7 +122,7 @@ class ExampleContainer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              { this.state.activeItem ? this.state.activeItem : 'CanvasMagic' }
+              {this.state.activeItem ? this.state.activeItem : 'CanvasMagic'}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -148,9 +155,9 @@ class ExampleContainer extends React.Component {
         </Hidden>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-            <Main> 
-              <div className="lds-hourglass"></div>
-            </Main>
+          <Main>
+            <div className="lds-hourglass"></div>
+          </Main>
         </main>
       </div>
     );

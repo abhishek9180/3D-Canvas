@@ -25,13 +25,13 @@
     body {
       background: #2B3134 !important;
       color: #777;
+      overflow: hidden;
     }
 
     .preloader-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      position: absolute;
+      top: 50%;
+      left: 45%;
     }
 
     .lds-hourglass {
@@ -75,9 +75,11 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <div id="root" class="preloader-wrap">
-      <div class="lds-hourglass"></div>
-  </div>
+  <div id="root">
+    <div class="preloader-wrap">
+        <div class="lds-hourglass"></div>
+    </div>
+</div>
   <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

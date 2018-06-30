@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
 
 import AppLogo from '../AppLogo';
@@ -23,14 +22,10 @@ class Home extends React.Component{
         <div>
           <MenuAppBar />
           <AppLogo />
-          <div id="holder">
-            <Typography variant="title" className="typography-header" gutterBottom>
-              Explore our examples and experience the real power of Canvas. 
-            </Typography>
-            <h3><Link className="try-now" to="/examples/camera-array">Try out more</Link></h3>
-           
-          </div>
-          
+          <div>
+            <div className="arrow bounce"></div>
+              <Link className="try-now" to="/examples/camera-array">Try out more<i></i></Link>
+            </div>
         </div>
     );
   }

@@ -27,7 +27,7 @@ class PolygonAnimationGeometry extends React.Component {
     const height = this.mount.clientHeight;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera( 30, window.innerWidth/window.innerHeight, 0.1, 1000 );;
+    const camera = new THREE.PerspectiveCamera( 30, this.mount.clientWidth/this.mount.clientHeight, 0.1, 1000 );;
     const renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setClearColor('#222');
     renderer.setSize(width, height);
@@ -78,7 +78,7 @@ class PolygonAnimationGeometry extends React.Component {
     this.material = material
     this.icosahedron = icosahedron;
     this.mesh = mesh;
-
+    console.log("width: " + this.mount.clientWidth);
     this.mount.appendChild(this.renderer.domElement)
     this.start();
   }
@@ -117,8 +117,8 @@ class PolygonAnimationGeometry extends React.Component {
   }
 
   handleResize() {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const width = this.mount.clientWidth;
+      const height = this.mount.clientHeight;
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();
 
@@ -126,12 +126,8 @@ class PolygonAnimationGeometry extends React.Component {
   }
 
   render() {
-    console.log("Animate Cube");
     return (
-      <div
-        style={{ width: '100%', height: '100vh' }}
-        ref={(mount) => { this.mount = mount }}
-      />
+      <div className="canvas-container" ref={(mount) => { this.mount = mount }}/>
     )
   }
 }

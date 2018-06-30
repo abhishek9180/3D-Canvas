@@ -30,8 +30,6 @@ class TextAnimationLights extends Component {
 		this.targetRotationOnMouseDown = 0;
 		this.mouseX = 0;
 		this.mouseXOnMouseDown = 0;
-		this.windowHalfX = window.innerWidth / 2;
-		this.windowHalfY = window.innerHeight / 2;
         this.isFirstTimeLoaded = true;
 
         this.start = this.start.bind(this)
@@ -52,6 +50,9 @@ class TextAnimationLights extends Component {
 
         const width = this.mount.clientWidth;
         const height = this.mount.clientHeight;
+
+        this.windowHalfX = width / 2;
+		this.windowHalfY = height / 2;
 
         this.camera = new THREE.PerspectiveCamera(30, width / height, 1, 1500);
         this.camera.position.set(0, 400, 700);
@@ -266,19 +267,16 @@ class TextAnimationLights extends Component {
 
 
     handleResize() {
-        this.windowHalfX = window.innerWidth / 2;
-		this.windowHalfY = window.innerHeight / 2;
-		this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.windowHalfX = this.mount.clientWidth / 2;
+		this.windowHalfY = this.mount.clientHeight / 2;
+		this.camera.aspect = this.mount.clientWidth / this.mount.clientHeight;
 		this.camera.updateProjectionMatrix();
-		this.renderer.setSize( window.innerWidth, window.innerHeight );
+		this.renderer.setSize( this.mount.clientWidth, this.mount.clientHeight );
     }
 
     render() {
         return (
-            <div
-                style={{ width: '100%', height: '100vh', }} className="logo"
-                ref={(mount) => { this.mount = mount }}
-            />
+            <div className="canvas-container" ref={(mount) => { this.mount = mount }}/>
         )
     }
 }
