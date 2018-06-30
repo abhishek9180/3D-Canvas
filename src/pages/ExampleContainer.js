@@ -54,9 +54,6 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: '0px',
-  },
-  progress: {
-    margin: theme.spacing.unit * 2,
   }
 });
 
@@ -93,14 +90,14 @@ class ExampleContainer extends React.Component {
         <div className="j112">
           <div className="j113">
             <Link to="/">
-              <h1 class="logo">
-                <span class="cuboid">
-                  <span class="cuboid-face cuboid-face-front"></span>
-                  <span class="cuboid-face cuboid-face-back"></span>
-                  <span class="cuboid-face cuboid-face-left"></span>
+              <div className="logo">
+                <span className="cuboid">
+                  <span className="cuboid-face cuboid-face-front"></span>
+                  <span className="cuboid-face cuboid-face-back"></span>
+                  <span className="cuboid-face cuboid-face-left"></span>
                 </span>
-                <span class="logo-text">anvasmagic</span>
-              </h1>
+                <span className="logo-text">anvasmagic</span>
+              </div>
             </Link>
           </div>
         </div>
@@ -156,7 +153,16 @@ class ExampleContainer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Main>
-            <div className="lds-hourglass"></div>
+            <div className="preloader-wrap">
+              <div className="cuboid-container">
+                <span className="cuboid">
+                  <span className="cuboid-face cuboid-face-front"></span>
+                  <span className="cuboid-face cuboid-face-back"></span>
+
+                  <span className="cuboid-face cuboid-face-left"></span>
+                </span>
+              </div>
+            </div>
           </Main>
         </main>
       </div>

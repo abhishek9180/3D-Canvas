@@ -21,7 +21,7 @@ class PolygonAnimationGeometry extends React.Component {
 
   componentDidMount() {
 
-    window.addEventListener('resize', debounce(this.boundResize, 16));
+    window.addEventListener('resize', this.boundResize);
 
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
@@ -86,7 +86,7 @@ class PolygonAnimationGeometry extends React.Component {
   componentWillUnmount() {
     this.stop();
     this.mount.removeChild(this.renderer.domElement);
-    window.removeEventListener('scroll', debounce(this.boundResize, 16));
+    window.removeEventListener('resize', this.boundResize);
   }
 
   start() {

@@ -97,12 +97,12 @@ class TextAnimationLights extends Component {
 		this.mount.appendChild(this.renderer.domElement)
 				
 		// EVENTS
-		document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
+		document.addEventListener( 'mousedown', this.onDocumentMouseDown);
 		document.addEventListener( 'touchstart', this.onDocumentTouchStart, {passive: false} );
 		document.addEventListener( 'touchmove', this.onDocumentTouchMove, {passive: false} );
-		document.addEventListener( 'keypress', this.onDocumentKeyPress, false );
-        document.addEventListener( 'keydown', this.onDocumentKeyDown, false );
-        window.addEventListener('resize', debounce(this.boundResize, 16));
+		document.addEventListener( 'keypress', this.onDocumentKeyPress);
+        document.addEventListener( 'keydown', this.onDocumentKeyDown);
+        window.addEventListener('resize', this.boundResize);
 
         this.start();
     }
@@ -116,7 +116,7 @@ class TextAnimationLights extends Component {
     componentWillUnmount() {
         this.stop();
         this.mount.removeChild(this.renderer.domElement);
-        window.removeEventListener('scroll', debounce(this.boundResize, 16));
+        window.removeEventListener('resize', this.boundResize);
         document.removeEventListener( 'mousedown', this.onDocumentMouseDown );
 		document.removeEventListener( 'touchstart', this.onDocumentTouchStart );
 		document.removeEventListener( 'touchmove', this.onDocumentTouchMove );

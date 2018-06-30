@@ -27,7 +27,7 @@ class UniverseAnimationLights extends Component {
 
     componentDidMount() {
 
-        window.addEventListener('resize', debounce(this.boundResize, 16));
+        window.addEventListener('resize', this.boundResize);
 
         const width = this.mount.clientWidth;
         const height = this.mount.clientHeight;
@@ -35,6 +35,8 @@ class UniverseAnimationLights extends Component {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1000);;
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
+        this.renderer.domElement.className = 'space-texture';
+        
         //this.renderer.setClearColor('#222');
         this.renderer.setSize(width, height);
 
@@ -51,7 +53,7 @@ class UniverseAnimationLights extends Component {
         var textureLoader = new THREE.TextureLoader();
         textureLoader.crossOrigin = true;
         let self = this;
-        textureLoader.load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/rock-texture.jpg', function (texture) {
+        textureLoader.load('../images/rock-texture.png', function (texture) {
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
             texture.repeat.set(2, 2);
             self.material = new THREE.MeshLambertMaterial({ map: texture });
@@ -102,11 +104,6 @@ class UniverseAnimationLights extends Component {
         this.mesh = icosahedron;
     }
 
-    /* rotate() {
-        this.mesh.rotation.x += this.vr.x;
-        this.mesh.rotation.y += this.vr.y;
-    } */
-
     updateCamPosition() {
         this.angle += 0.005;
         var z = 100 * Math.cos(this.angle);
@@ -121,7 +118,7 @@ class UniverseAnimationLights extends Component {
     componentWillUnmount() {
         this.stop();
         this.mount.removeChild(this.renderer.domElement);
-        window.removeEventListener('scroll', debounce(this.boundResize, 16));
+        window.removeEventListener('resize', this.boundResize);
     }
 
     start() {
@@ -137,10 +134,6 @@ class UniverseAnimationLights extends Component {
     animate() {
 
         this.renderer.render(this.scene, this.camera);
-        /* for (var i = 0; i < 100; i++) {
-            //this.rocks[i].rotate();
-        } */
-
         this.updateCamPosition();
         this.frameId = window.requestAnimationFrame(this.animate)
     }
@@ -149,8 +142,8 @@ class UniverseAnimationLights extends Component {
     handleResize() {
         const width = this.mount.clientWidth;
         const height = this.mount.clientHeight;
-        //this.camera.aspect = width / height;
-        //this.camera.updateProjectionMatrix();
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
 
         this.renderer.setSize(width, height);
     }

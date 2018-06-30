@@ -26,8 +26,8 @@ class AppLogo extends Component {
 
     componentDidMount() {
 
-        window.addEventListener('resize', debounce(this.boundResize, 16));
-        document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
+        window.addEventListener('resize', this.boundResize);
+        document.addEventListener( 'mousemove', this.onDocumentMouseMove);
 
         this.windowHalfX = this.mount.clientWidth / 2;
         this.windowHalfY = this.mount.clientHeight / 2;
@@ -106,7 +106,7 @@ class AppLogo extends Component {
     componentWillUnmount() {
         this.stop();
         this.mount.removeChild(this.renderer.domElement);
-        window.removeEventListener('resize', debounce(this.boundResize, 16));
+        window.removeEventListener('resize', this.boundResize);
         document.removeEventListener( 'mousemove', this.onDocumentMouseMove );
     }
 

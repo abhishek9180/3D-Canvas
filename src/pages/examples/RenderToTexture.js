@@ -38,7 +38,7 @@ class RenderToTexture extends React.Component {
 
         this.init();
         this.start()
-        window.addEventListener( 'mousemove', this.onDocumentMouseMove, false);
+        window.addEventListener( 'mousemove', this.onDocumentMouseMove);
     }
 
     init() {

@@ -14,7 +14,7 @@ class CameraArray extends React.Component {
     }
 
     init() {
-        window.addEventListener('resize', this.onWindowResize, false);
+        window.addEventListener('resize', this.onWindowResize);
 
         let AMOUNT = 6;
         let SIZE = 1 / AMOUNT;
@@ -78,6 +78,7 @@ class CameraArray extends React.Component {
     componentWillUnmount() {
         this.stop();
         this.mount.removeChild(this.renderer.domElement);
+        window.removeEventListener('resize', this.onWindowResize);
     }
 
     start() {

@@ -53,17 +53,17 @@ class MenuAppBar extends React.Component {
         <AppBar position="fixed" className={scrollClass}>
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.flex}>
-              <h1 class="logo">
+              <div className="logo">
 
-                <span class="cuboid">
-                  <span class="cuboid-face cuboid-face-front"></span>
-                  <span class="cuboid-face cuboid-face-back"></span>
+                <span className="cuboid">
+                  <span className="cuboid-face cuboid-face-front"></span>
+                  <span className="cuboid-face cuboid-face-back"></span>
 
-                  <span class="cuboid-face cuboid-face-left"></span>
+                  <span className="cuboid-face cuboid-face-left"></span>
                 </span>
 
-                <span class="logo-text">anvasmagic</span>
-              </h1>
+                <span className="logo-text">anvasmagic</span>
+              </div>
             </Typography>
           </Toolbar>
         </AppBar>
