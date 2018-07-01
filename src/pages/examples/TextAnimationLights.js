@@ -98,8 +98,8 @@ class TextAnimationLights extends Component {
 				
 		// EVENTS
 		document.addEventListener( 'mousedown', this.onDocumentMouseDown);
-		document.addEventListener( 'touchstart', this.onDocumentTouchStart, {passive: false} );
-		document.addEventListener( 'touchmove', this.onDocumentTouchMove, {passive: false} );
+		this.renderer.domElement.addEventListener( 'touchstart', this.onDocumentTouchStart, {passive: false} );
+		this.renderer.domElement.addEventListener( 'touchmove', this.onDocumentTouchMove, {passive: false} );
 		document.addEventListener( 'keypress', this.onDocumentKeyPress);
         document.addEventListener( 'keydown', this.onDocumentKeyDown);
         window.addEventListener('resize', this.boundResize);
