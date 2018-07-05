@@ -41,13 +41,18 @@ class SphereWithNoise extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.stop();
+        this.mount.removeChild(this.renderer.domElement);
+        window.removeEventListener('resize', this.onWindowResize);
+    }
+    
     stop() {
         cancelAnimationFrame(this.frameId);
     }
 
     animate() {
         let time = Date.now()*0.003;
-        console.log("time: "+time);
         let k = 3;
         for(let i=0; i<this.sphere.geometry.vertices.length; i++){
             let p = this.sphere.geometry.vertices[i];
