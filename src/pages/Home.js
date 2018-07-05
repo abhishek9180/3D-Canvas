@@ -24,7 +24,7 @@ class Home extends React.Component{
           <AppLogo />
           <div>
             <div className="arrow bounce"></div>
-              <Link className="try-now" to="/examples/camera-array">Try out more<i></i></Link>
+              <Link className="try-now" to="/examples/sphere-with-noise">Try out more<i></i></Link>
             </div>
         </div>
     );

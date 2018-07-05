@@ -6,6 +6,7 @@ import UniverseAnimationLights from "./examples/UniverseAnimationLights";
 import TextAnimationLights from "./examples/TextAnimationLights";
 import RenderToTexture from "./examples/RenderToTexture";
 import CameraArray from "./examples/CameraArray";
+import SphereWithNoise from "./examples/SphereWithNoise";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -21,6 +22,7 @@ const Main = () => (
       <Route path="/examples/text-animation-geometry" component={TextAnimationLights} />
       <Route path="/examples/render-to-texture" component={RenderToTexture} />
       <Route path="/examples/camera-array" component={CameraArray} />
+      <Route path="/examples/sphere-with-noise" component={SphereWithNoise} />
     </Switch>
   </main>
 );

@@ -64,7 +64,7 @@ class ExampleContainer extends React.Component {
     super(props)
     this.state = {
       mobileOpen: false,
-      activeItem: 'Camera Array'
+      activeItem: 'Sphere With Noise'
     };
     // This binding is necessary to make `this` work in the callback
     this.handleChange = this.handleChange.bind(this);

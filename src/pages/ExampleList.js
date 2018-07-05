@@ -60,6 +60,11 @@ class ExampleList extends React.Component {
         id: 6,
         url: "/examples/camera-array",
         title: "Camera Array"
+      },
+      {
+        id: 7,
+        url: "/examples/sphere-with-noise",
+        title: "Sphere With Noise"
       }
     ];
   
